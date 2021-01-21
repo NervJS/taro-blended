@@ -22,7 +22,8 @@ const config = {
   },
   framework: 'react',
   alias: {
-    '@/utils': path.resolve(__dirname, '../utils')
+    '@/utils': process.env.NODE_ENV === 'production' ? path.resolve(__dirname, '../utils') : path.resolve(__dirname, '../../miniapp/utils'),
+    '@/components': process.env.NODE_ENV === 'production' ? path.resolve(__dirname, '../components') : path.resolve(__dirname, '../../miniapp/components')
   },
   mini: {
     enableSourceMap: false,
@@ -37,7 +38,7 @@ const config = {
             const externalDirs = ['@/utils']
             const externalDir = externalDirs.find(dir => request.startsWith(dir))
 
-            if (externalDir) {
+            if (process.env.NODE_ENV === 'production' && externalDir) {
               const externalDirPath = config.alias[externalDir]
               const res = request.replace('@/utils', path.relative(context, externalDirPath))
 
@@ -58,10 +59,8 @@ const config = {
                 name: 'subpackages/common',
                 minChunks: 2,
                 test: (module, chunks) => {
-                  if (/[\\/]common[\\/]/.test(module.resource)) {
-                    const isNoOnlySubpackRequired = chunks.find(chunk => !(/\bsubpackages\b/.test(chunk.name)))
-                    return !isNoOnlySubpackRequired
-                  }
+                  const isNoOnlySubpackRequired = chunks.find(chunk => !(/\bsubpackages\b/.test(chunk.name)))
+                  return !isNoOnlySubpackRequired
                 },
                 priority: 200
               }

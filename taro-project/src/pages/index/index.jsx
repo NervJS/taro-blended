@@ -13,6 +13,7 @@ export default class Index extends Component {
   render () {
     return (
       <View className='index'>
+        <title />
         <Text>Hello world!</Text>
       </View>
     )
