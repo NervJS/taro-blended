@@ -34,7 +34,6 @@ App({
         }
       }
     })
-    taroApp.onLaunch()
   },
   
   onShow () {

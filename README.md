@@ -8,7 +8,7 @@
 
 ```bash
 cd taro-project
-taro build --type weapp --watch --blended
+taro build --type weapp --blended
 ```
 
 2. 开发者工具打开 `miniapp` 项目
