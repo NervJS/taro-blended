@@ -1,3 +1,5 @@
+【deprecated】本示例已停止维护，后续请参考：https://github.com/NervJS/taro/blob/next/examples/README.md
+
 ## 在原生小程序项目中使用 Taro
 
 > Taro `3.0.25+`
